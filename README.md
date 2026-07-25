@@ -22,7 +22,6 @@ Built specifically for college students who manage pocket money, juggle educatio
 
 ---
 
-## Screenshots
 ## 📸 Screenshots
 
 ### Dashboard
