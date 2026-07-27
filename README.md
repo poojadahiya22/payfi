@@ -106,7 +106,7 @@ Add income and expenses, categorize by type, filter history, and get a breakdown
 
 | Layer | Technology |
 |-------|-----------|
-| Frontend | React · TypeScript · Vite |
+| Frontend | React · TypeScript ·
 | Styling | Tailwind CSS · Shadcn/UI · Lucide Icons |
 | Animations | Framer Motion |
 | Backend & DB | Supabase · PostgreSQL |
