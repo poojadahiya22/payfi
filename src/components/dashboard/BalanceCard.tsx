@@ -47,11 +47,13 @@ export function BalanceCard({
           "linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(160 70% 35%) 100%)",
       }}
     >
+      {/* Decorative background glow */}
       <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
 
       <div className="absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-emerald-200/10 blur-3xl" />
 
       <div className="relative">
+        {/* Header */}
         <div className="flex items-start justify-between">
           <div>
             <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/70">
@@ -87,11 +89,13 @@ export function BalanceCard({
 
           <button
             type="button"
-            onClick={() =>
-              revealed
-                ? setRevealed(false)
-                : setEntering(true)
-            }
+            onClick={() => {
+              if (revealed) {
+                setRevealed(false);
+              } else {
+                setEntering(true);
+              }
+            }}
             aria-label={
               revealed ? "Hide balance" : "Show balance"
             }
@@ -105,6 +109,7 @@ export function BalanceCard({
           </button>
         </div>
 
+        {/* Balance information */}
         <div className="mt-5 flex items-center justify-between border-t border-white/15 pt-4">
           <div>
             <p className="text-[11px] text-white/60">
@@ -121,6 +126,7 @@ export function BalanceCard({
           </div>
         </div>
 
+        {/* PIN keypad */}
         <AnimatePresence>
           {entering && !revealed && (
             <motion.div
@@ -133,6 +139,7 @@ export function BalanceCard({
                 Enter PIN to reveal
               </p>
 
+              {/* PIN indicators */}
               <div
                 className={`mb-3 flex gap-2 ${
                   error ? "animate-pulse" : ""
@@ -142,9 +149,7 @@ export function BalanceCard({
                   <div
                     key={index}
                     className={`flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-lg font-bold ${
-                      error
-                        ? "ring-2 ring-red-300"
-                        : ""
+                      error ? "ring-2 ring-red-300" : ""
                     }`}
                   >
                     {digits[index] ? "•" : ""}
@@ -152,6 +157,7 @@ export function BalanceCard({
                 ))}
               </div>
 
+              {/* Keypad */}
               <div className="grid grid-cols-3 gap-2">
                 {[
                   "1",
@@ -170,13 +176,15 @@ export function BalanceCard({
                   <button
                     type="button"
                     key={index}
-                    onClick={() =>
-                      key === "⌫"
-                        ? setDigits((value) =>
-                            value.slice(0, -1)
-                          )
-                        : key && onDigit(key)
-                    }
+                    onClick={() => {
+                      if (key === "⌫") {
+                        setDigits((value) =>
+                          value.slice(0, -1)
+                        );
+                      } else if (key) {
+                        onDigit(key);
+                      }
+                    }}
                     disabled={!key}
                     className={`h-10 rounded-lg font-medium transition ${
                       key
