@@ -61,7 +61,7 @@ const Dashboard = () => {
         </Link>
       </motion.div>
 
-      vv<motion.div
+  <motion.div
   variants={fadeUp}
   className="glass-card rounded-2xl p-5">
   <div className="mb-4 flex items-center justify-between">
