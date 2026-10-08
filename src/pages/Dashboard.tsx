@@ -60,30 +60,85 @@ const Dashboard = () => {
         </Link>
       </motion.div>
 
-      <motion.div variants={fadeUp}><BalanceCard balance={summary.balance} /></motion.div>
+      vv<motion.div
+  variants={fadeUp}
+  className="glass-card rounded-2xl p-5">
+  <div className="mb-4 flex items-center justify-between">
+    <div>
+      <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+        Overview
+      </p>
 
-      <motion.div variants={fadeUp} className="grid grid-cols-3 gap-3">
-        <StatPill icon={ArrowDownRight} label="Income" value={summary.income} color="text-score-safe" />
-        <StatPill icon={ArrowUpRight} label="Expense" value={summary.expense} color="text-score-danger" />
-        <StatPill icon={PiggyBank} label="Saved" value={summary.savings} color="text-primary" />
-      </motion.div>
+      <h3 className="mt-1 text-sm font-semibold">
+        Income vs Expense
+      </h3>
+    </div>
 
-      <motion.div variants={fadeUp}><HealthScoreCard score={score} breakdown={breakdown} /></motion.div>
+    <span className="rounded-full bg-background/70 px-3 py-1 text-[10px] text-muted-foreground">
+      6 months
+    </span>
+  </div>
 
-      <motion.div variants={fadeUp} className="glass-card rounded-2xl p-5">
-        <h3 className="text-sm font-medium text-muted-foreground mb-3">Income vs Expense (6 months)</h3>
-        <div className="h-48">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={months}>
-              <XAxis dataKey="label" stroke="hsl(var(--muted-foreground))" fontSize={11} tickLine={false} axisLine={false} />
-              <YAxis hide />
-              <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8 }} />
-              <Bar dataKey="income" fill="hsl(var(--score-safe))" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="expense" fill="hsl(var(--score-danger))" radius={[4, 4, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </motion.div>
+  <div className="h-44">
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart
+        data={months}
+        margin={{
+          top: 8,
+          right: 4,
+          left: 4,
+          bottom: 0,
+        }}
+        barGap={6}>
+        <XAxis
+          dataKey="label"
+          stroke="hsl(var(--muted-foreground))"
+          fontSize={10}
+          tickLine={false}
+          axisLine={false}/>
+
+        <YAxis hide />
+
+        <Tooltip
+          cursor={{ fill: "hsl(var(--muted)/0.15)" }}
+          formatter={(value: number) => formatINR(value)}
+          contentStyle={{
+            background: "hsl(var(--card))",
+            border: "1px solid hsl(var(--border))",
+            borderRadius: 12,
+            fontSize: 12,
+          }}
+        />
+
+        <Bar
+          dataKey="income"
+          fill="hsl(var(--score-safe))"
+          radius={[6, 6, 0, 0]}
+          maxBarSize={22}
+        />
+
+        <Bar
+          dataKey="expense"
+          fill="hsl(var(--score-danger))"
+          radius={[6, 6, 0, 0]}
+          maxBarSize={22}
+        />
+      </BarChart>
+    </ResponsiveContainer>
+  </div>
+
+  <div className="mt-3 flex items-center justify-center gap-5 text-[10px] text-muted-foreground">
+    <div className="flex items-center gap-1.5">
+      <span className="h-2 w-2 rounded-full bg-[hsl(var(--score-safe))]" />
+      Income
+    </div>
+
+    <div className="flex items-center gap-1.5">
+      <span className="h-2 w-2 rounded-full bg-[hsl(var(--score-danger))]" />
+      Expense
+    </div>
+  </div>
+</motion.div>
 
       {pieData.length > 0 && (
         <motion.div variants={fadeUp} className="glass-card rounded-2xl p-5">
