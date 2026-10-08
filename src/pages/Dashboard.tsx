@@ -61,6 +61,10 @@ const Dashboard = () => {
         </Link>
       </motion.div>
 
+      <motion.div variants={fadeUp}>
+      <BalanceCard balance={summary.balance} />
+      </motion.div>
+      
   <motion.div
   variants={fadeUp}
   className="glass-card rounded-2xl p-5">
