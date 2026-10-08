@@ -147,34 +147,31 @@ const Dashboard = () => {
   );
 };
 
-function StatPill({ icon: Icon, label, value, color }: any) {
+function StatPill({
+  icon: Icon,
+  label,
+  value,
+  color,
+}: {
+  icon: React.ElementType;
+  label: string;
+  value: number;
+  color: string;
+}) {
   return (
-    <motion.div
-      whileHover={{ y: -2 }}
-      transition={{ duration: 0.2 }}
-      className="group glass-card rounded-2xl border border-border/50 p-4"
-    >
-      <div className="flex items-center justify-between">
-        <div
-          className={`flex h-9 w-9 items-center justify-center rounded-xl bg-background/70 ${color}`}
-        >
-          <Icon className="h-4 w-4" />
-        </div>
+    <div className="glass-card rounded-xl p-3 text-center">
+      <Icon
+        className={`mx-auto mb-1 h-4 w-4 ${color}`}
+      />
 
-        <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-          This month
-        </span>
-      </div>
-
-      <p className="mt-4 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+      <p className="text-[10px] uppercase tracking-wide text-muted-foreground">
         {label}
       </p>
 
-      <p className="mt-1 truncate text-lg font-bold tracking-tight">
+      <p className="mt-0.5 text-sm font-semibold">
         {formatINR(value)}
       </p>
-    </motion.div>
+    </div>
   );
 }
-
 export default Dashboard;
