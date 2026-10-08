@@ -88,10 +88,6 @@ const Dashboard = () => {
     color="text-primary"/>
 </motion.div>
 
-<motion.div
-  variants={fadeUp}
-  className="glass-card rounded-2xl p-5">
-      
   <motion.div
   variants={fadeUp}
   className="glass-card rounded-2xl p-5">
@@ -232,16 +228,12 @@ const Dashboard = () => {
       </motion.div>
     </motion.div>
   );
+};
 
-function StatPill({
-  Icon,
-  label,
-  value,
-  color,
-}: {
+function StatPill({ icon:Icon,label,value,color }:{
   icon: React.ElementType;
-  label: string;
-  value: number;
+  label: String;
+  value: Number;
   color: string;
 }) {
   return (
