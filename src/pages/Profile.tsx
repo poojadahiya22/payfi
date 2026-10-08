@@ -335,7 +335,6 @@ const Profile = () => {
       Customize your budgeting preferences
     </p>
   </div>
-</div>
 
   {/* Currency */}
         <div className="space-y-1.5">
