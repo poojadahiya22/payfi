@@ -64,6 +64,37 @@ const Dashboard = () => {
       <motion.div variants={fadeUp}>
       <BalanceCard balance={summary.balance} />
       </motion.div>
+
+      <motion.div variants={fadeUp}>
+      <BalanceCard balance={summary.balance} />
+      </motion.div>
+
+{/* Summary cards */}
+<motion.div
+  variants={fadeUp}
+  className="grid grid-cols-3 gap-3">
+  <StatPill
+    icon={ArrowDownRight}
+    label="Income"
+    value={summary.income}
+    color="text-score-safe"/>
+
+  <StatPill
+    icon={ArrowUpRight}
+    label="Expense"
+    value={summary.expense}
+    color="text-score-danger"/>
+
+  <StatPill
+    icon={PiggyBank}
+    label="Saved"
+    value={summary.savings}
+    color="text-primary"/>
+</motion.div>
+
+<motion.div
+  variants={fadeUp}
+  className="glass-card rounded-2xl p-5">
       
   <motion.div
   variants={fadeUp}
