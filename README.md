@@ -42,17 +42,6 @@ Built specifically for college students who manage pocket money, juggle educatio
 ## PayFi AI
 ![PayFi AI](screenshots/payfi-ai.png)
 
-## 📸 Application Preview
-
-<p align="center">
-
-<img src="screenshots/dashboard.png" width="250"/>
-<img src="screenshots/transactions.png" width="250"/>
-<img src="screenshots/insights.png" width="250"/>
-<img src="screenshots/goals.png" width="250"/>
-<img src="screenshots/payfi-ai.png" width="250"/>
-
-</p>
 
 ## Core Features
 
