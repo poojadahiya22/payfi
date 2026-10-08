@@ -34,15 +34,6 @@ const Profile = () => {
     document.documentElement.classList.contains("dark")
   );
 
-  const [saving, setSaving] = useState(false);
-  const [savingPreferences, setSavingPreferences] = useState(false);
-
-  const [financials, setFinancials] = useState({
-  income: 0,
-  expenses: 0,
-  savings: 0,
-  savingsRate: 0,
-});
 
   useEffect(() => {
     //existing profile loading code
@@ -73,8 +64,8 @@ const Profile = () => {
   const loadFinancials = async () => {
     const { data, error } = await supabase
       .from("transactions")
-      .select("date,type,amount");
-      .eq("user_id",user.id);
+      .select("date,type,amount")
+      .eq("user_id", user.id);
 
     if (error) {
       console.error("Failed to load financial summary:", error);
@@ -116,6 +107,16 @@ const Profile = () => {
   loadFinancials();
 }, [user]);
 
+  const [saving, setSaving] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  const [financials, setFinancials] = useState({
+  income: 0,
+  expenses: 0,
+  savings: 0,
+  savingsRate: 0,
+});
+  
   const save = async () => {
     if (!user) return;
 
