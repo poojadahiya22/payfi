@@ -232,10 +232,9 @@ const Dashboard = () => {
       </motion.div>
     </motion.div>
   );
-};
 
 function StatPill({
-  icon: Icon,
+  Icon,
   label,
   value,
   color,
