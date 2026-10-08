@@ -8,6 +8,7 @@ import { BalanceCard } from "@/components/dashboard/BalanceCard";
 import { useTransactions, useBudgets, useGoals, computeSummary, computeHealthScore } from "@/hooks/useFinanceData";
 import { CATEGORY_COLORS, formatINR } from "@/lib/categories";
 import { Button } from "@/components/ui/button";
+import { BalanceCard } from "@/components/dashboard/BalanceCard";
 
 const Dashboard = () => {
   const { data: txns = [], isLoading } = useTransactions();
