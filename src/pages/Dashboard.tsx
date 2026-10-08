@@ -65,10 +65,6 @@ const Dashboard = () => {
       <BalanceCard balance={summary.balance} />
       </motion.div>
 
-      <motion.div variants={fadeUp}>
-      <BalanceCard balance={summary.balance} />
-      </motion.div>
-
 {/* Summary cards */}
 <motion.div
   variants={fadeUp}
