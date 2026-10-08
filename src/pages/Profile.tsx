@@ -37,7 +37,15 @@ const Profile = () => {
   const [saving, setSaving] = useState(false);
   const [savingPreferences, setSavingPreferences] = useState(false);
 
+  const [financials, setFinancials] = useState({
+  income: 0,
+  expenses: 0,
+  savings: 0,
+  savingsRate: 0,
+});
+
   useEffect(() => {
+    //existing profile loading code
     if (!user) return;
 
     supabase
@@ -57,6 +65,55 @@ const Profile = () => {
         }
       });
   }, [user]);
+  
+  useEffect(() => {
+    //financial snapshot code
+  if (!user) return;
+
+  const loadFinancials = async () => {
+    const { data, error } = await supabase
+      .from("transactions")
+      .select("date,type,amount");
+
+    if (error) {
+      console.error("Failed to load financial summary:", error);
+      return;
+    }
+
+    const now = new Date();
+
+    const currentMonthTransactions = (data ?? []).filter((transaction) => {
+      const date = new Date(transaction.date);
+
+      return (
+        date.getMonth() === now.getMonth() &&
+        date.getFullYear() === now.getFullYear()
+      );
+    });
+
+    const income = currentMonthTransactions
+      .filter((t) => t.type === "income")
+      .reduce((sum, t) => sum + Number(t.amount), 0);
+
+    const expenses = currentMonthTransactions
+      .filter((t) => t.type === "expense")
+      .reduce((sum, t) => sum + Number(t.amount), 0);
+
+    const savings = income - expenses;
+
+    const savingsRate =
+      income > 0 ? Math.round((savings / income) * 100) : 0;
+
+    setFinancials({
+      income,
+      expenses,
+      savings,
+      savingsRate,
+    });
+  };
+
+  loadFinancials();
+}, [user]);
 
   const save = async () => {
     if (!user) return;
@@ -199,19 +256,86 @@ const Profile = () => {
         </Button>
       </div>
 
-      {/* Financial Preferences */}
-      <div className="glass-card rounded-2xl p-5 space-y-4">
-        <div className="flex items-center gap-2">
-          <WalletCards className="w-5 h-5" />
-          <div>
-            <h2 className="font-semibold">Financial Preferences</h2>
-            <p className="text-xs text-muted-foreground">
-              Personalize your PayFi experience
-            </p>
-          </div>
-        </div>
+{/* Financial Snapshot */}
 
-        {/* Currency */}
+<div className="glass-card rounded-2xl p-5 space-y-4">
+  <div>
+    <h2 className="font-semibold flex items-center gap-2">
+      <WalletCards className="w-5 h-5" />
+      Financial Snapshot
+    </h2>
+
+    <p className="text-xs text-muted-foreground">
+      Your financial activity for this month
+    </p>
+  </div>
+
+  <div className="grid grid-cols-2 gap-3">
+
+    {/* Income */}
+    <div className="rounded-xl border border-border/50 p-4">
+      <p className="text-xs text-muted-foreground">
+        💰 Income
+      </p>
+
+      <p className="text-lg font-bold mt-2">
+        ₹{financials.income.toLocaleString("en-IN")}
+      </p>
+    </div>
+
+    {/* Expenses */}
+    <div className="rounded-xl border border-border/50 p-4">
+      <p className="text-xs text-muted-foreground">
+        💸 Expenses
+      </p>
+
+      <p className="text-lg font-bold mt-2">
+        ₹{financials.expenses.toLocaleString("en-IN")}
+      </p>
+    </div>
+
+    {/* Savings */}
+    <div className="rounded-xl border border-border/50 p-4">
+      <p className="text-xs text-muted-foreground">
+        🐷 Savings
+      </p>
+
+      <p className="text-lg font-bold mt-2">
+        ₹{financials.savings.toLocaleString("en-IN")}
+      </p>
+    </div>
+
+    {/* Savings Rate */}
+    <div className="rounded-xl border border-border/50 p-4">
+      <p className="text-xs text-muted-foreground">
+        📈 Savings Rate
+      </p>
+
+      <p className="text-lg font-bold mt-2">
+        {financials.savingsRate}%
+      </p>
+    </div>
+
+  </div>
+</div>
+
+{/* Financial Preferences */}
+
+<div className="glass-card rounded-2xl p-5 space-y-4">
+
+  <div>
+    <h2 className="font-semibold flex items-center gap-2">
+      <PiggyBank className="w-5 h-5" />
+      Financial Preferences
+    </h2>
+
+    <p className="text-xs text-muted-foreground">
+      Customize your budgeting preferences
+    </p>
+  </div>
+</div>
+
+  {/* Currency */}
         <div className="space-y-1.5">
           <Label>Currency</Label>
 
@@ -265,8 +389,8 @@ const Profile = () => {
           <select
             value={defaultCategory}
             onChange={(e) => setDefaultCategory(e.target.value)}
-            className="w-full h-10 rounded-md border border-input bg-background px-3 text-sm"
-          >
+            className="w-full h-10 rounded-md border border-input bg-background px-3 text-sm">
+      
             <option value="Food">Food</option>
             <option value="Transport">Transport</option>
             <option value="Shopping">Shopping</option>
@@ -280,11 +404,10 @@ const Profile = () => {
         <Button
           onClick={savePreferences}
           disabled={savingPreferences}
-          className="w-full gradient-primary text-primary-foreground"
-        >
+          className="w-full gradient-primary text-primary-foreground">
           {savingPreferences ? "Saving..." : "Save Preferences"}
         </Button>
-      </div>
+    </div>
 
       {/* Appearance & Data */}
       <div className="glass-card rounded-2xl p-5 space-y-3">
@@ -301,15 +424,13 @@ const Profile = () => {
 
           <Switch
             checked={dark}
-            onCheckedChange={toggleTheme}
-          />
+            onCheckedChange={toggleTheme}/>
         </div>
 
         <Button
           variant="outline"
           className="w-full"
-          onClick={exportCSV}
-        >
+          onClick={exportCSV}>
           Export transactions (CSV)
         </Button>
       </div>
@@ -318,8 +439,7 @@ const Profile = () => {
       <Button
         variant="outline"
         className="w-full text-destructive border-destructive/30"
-        onClick={onSignOut}
-      >
+        onClick={onSignOut}>
         <LogOut className="w-4 h-4 mr-2" />
         Sign out
       </Button>
