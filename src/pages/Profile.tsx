@@ -74,6 +74,7 @@ const Profile = () => {
     const { data, error } = await supabase
       .from("transactions")
       .select("date,type,amount");
+      .eq("user_id",user.id);
 
     if (error) {
       console.error("Failed to load financial summary:", error);
