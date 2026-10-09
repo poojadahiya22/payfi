@@ -55,7 +55,7 @@ This month's snapshot:
 USER FINANCIAL CONTEXT:
 ${summary}`;
 
-  const apiKey = Deno.env.get("GEMINI_API_KEY");
+    const apiKey = Deno.env.get("GEMINI_API_KEY");
 
 if (!apiKey) {
   return new Response("AI not configured", {
