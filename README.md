@@ -1,172 +1,104 @@
-# P₹ PayFi
+<h1 align="center">P₹ PayFi</h1>
 
-### Smart Finance App for Students
+<p align="center">
+  <b>Your money, decoded.</b><br/>
+  A personal finance app built for students who want to know where their money actually goes.
+</p>
 
-> Track expenses. Build habits. Hit your goals. — Built for students who want to stop guessing where their money went.
+<p align="center">
+  <a href="https://payfi-finance.vercel.app"><b>Live Demo</b></a> ·
+  <a href="https://github.com/poojadahiya22/payfi">GitHub</a> ·
+  <a href="https://www.linkedin.com/in/pooja-dahiya-a04012297/">LinkedIn</a>
+</p>
 
-[Live Demo](will be updated soon) · [GitHub](https://github.com/poojadahiya22) · [Connect on LinkedIn](https://www.linkedin.com/in/pooja-dahiya-a04012297/)
-
-</div>
-
----
-
-## What is PayFi?
-
-Most expense trackers are just digital notebooks. You log a transaction, forget about it, repeat.
-
-PayFi is different. It's built around **understanding** your money — not just recording it. It analyzes your spending patterns, predicts your next month's expenses, coaches you through financial habits, and gamifies the hard part: actually saving.
-
-Built specifically for college students who manage pocket money, juggle education costs, and are trying to build financial discipline for the first time.
-
-> 🚧 Currently in active development. The full mobile app is planned — this README documents the web platform in its current form.
+<p align="center">
+  <img src="screenshots/dashboard.png" alt="PayFi dashboard" width="280" />
+</p>
 
 ---
 
-## 📸 Screenshots
+## Why I built this
 
-### Dashboard
+I'm a student, and by the end of every month I had no idea where my money went. The expense apps I tried were just long lists of transactions. I wanted something that tells me when I'm about to overspend and keeps my savings goals in front of me, so I built it.
 
-![Dashboard](screenshots/dashboard.png)
+It's also the project where I pushed myself beyond frontend work: authentication, a real database, per-user data, an AI feature that reads your own numbers, and a production deployment.
 
-### Transactions
+## What it does
 
-![Transactions](screenshots/transactions.png)
+- **Dashboard:** balance, income, expenses and savings at a glance, a six-month income vs. expense chart, this month's spending by category, and recent transactions. There's a button to hide your balance if someone is looking over your shoulder.
+- **Transactions:** add income and expenses with a category, search them, and filter by type or category.
+- **Insights and budgets:** set a monthly budget for each category. The bars fill up as you spend, and you get a warning when you're close to a limit (like *"Travel budget 98% used"*).
+- **Goals:** set something you're saving for with a target and a deadline, and add money to it as you go.
+- **Health score:** one number that sums up how you're doing financially.
+- **PayFi AI:** a chat assistant that answers questions using *your own* income, spending, categories and goals, not generic advice.
+- **Profile:** a monthly snapshot, your currency and savings target, dark mode, and one-click CSV export of all your data.
+- **Auth and privacy:** sign in with email or Google. Each user only sees their own data.
 
-### Insights
+## Screenshots
 
-![Insights](screenshots/insights.png)
+<p align="center">
+  <img src="screenshots/dashboard.png" alt="Dashboard" width="240" />
+  <img src="screenshots/transactions.png" alt="Transactions" width="240" />
+  <img src="screenshots/insights.png" alt="Insights and budgets" width="240" />
+</p>
+<p align="center">
+  <img src="screenshots/goals.png" alt="Savings goals" width="240" />
+  <img src="screenshots/payfi-ai.png" alt="PayFi AI chat" width="240" />
+  <img src="screenshots/profile.png" alt="Profile" width="240" />
+</p>
 
-## Goals
-![Goals](screenshots/goals.png)
+<p align="center">
+  <sub>Dashboard · Transactions · Insights · Goals · PayFi AI · Profile</sub>
+</p>
 
-## PayFi AI
-![PayFi AI](screenshots/payfi-ai.png)
-
-
-## Core Features
-
-### Smart Dashboard
-A personalized financial overview that updates in real time. Income vs. expense analytics, goal progress, health score — all in one place.
-
-```
-Good morning, Pooja 👋
-This month: Spent ₹7,820 · Saved ₹4,580 · Health Score: 82/100
-```
-
-### AI Spending Coach
-Analyzes your transaction history and surfaces patterns you wouldn't notice manually.
-
-```
-→ You spent 18% more on food this month
-→ Your savings rate improved by 12% — keep it up
-→ You're on track to hit your Laptop Fund goal by March
-```
-
-### Expense Prediction
-Uses historical data to forecast your next month's spending by category — food, transport, education, and more — with trend graphs and AI-backed recommendations.
-
-### Smart Budget Planner
-Input your income and expense categories (pocket money, rent, food, transport, education, entertainment). PayFi auto-generates a budget plan with daily spending limits, savings targets, and an emergency fund recommendation.
-
-### Savings Goals
-Create named goals — Laptop Fund, Emergency Fund, Travel, Higher Education — and track progress visually. The app tells you how much to save per day to hit your target on time.
-
-### Student Savings Challenges
-The hardest part of saving money is starting. PayFi gamifies it.
-
-Weekly challenges like *"No food delivery for 3 days"* or *"Save ₹500 this week"* — complete them, earn badges, build streaks.
-
-| Badge | Level |
-|-------|-------|
-| 🥉 Saver | Getting started |
-| 🥈 Smart Budgeter | Building consistency |
-| 🥇 Money Master | Strong discipline |
-| 🏆 Financial Champion | Elite savings habits |
-
-### Financial Health Center
-A composite score built from four pillars: Budget Adherence · Savings Consistency · Spending Discipline · Goal Progress. Gives you a single number that tells you how well you're managing your money — and exactly what to fix.
-
-### Transaction Management
-Add income and expenses, categorize by type, filter history, and get a breakdown of where your money actually went — not just how much you spent.
-
----
-
-## Tech Stack
+## Tech stack
 
 | Layer | Technology |
-|-------|-----------|
-| Frontend | React · TypeScript ·
-| Styling | Tailwind CSS · Shadcn/UI · Lucide Icons |
-| Animations | Framer Motion |
-| Backend & DB | Supabase · PostgreSQL |
-| Auth | Supabase Auth · Google OAuth |
+|-------|------------|
+| Frontend | React, TypeScript, Vite |
+| Styling | Tailwind CSS, shadcn/ui |
+| Animation | Framer Motion |
 | Charts | Recharts |
+| Backend and database | Supabase (PostgreSQL) |
+| Auth | Supabase Auth (email and Google) |
+| Deployment | Vercel |
 
----
+## Getting it live took a while
 
-## App Architecture
+The app worked locally for months before I could deploy it. Supabase environment variables kept breaking the production build, and I couldn't figure out why. I eventually got the Supabase keys, the GitHub repo and Vercel working together, and it's live now. After that I redesigned the dashboard and profile pages.
 
-```
-PayFi
-├── Auth Layer          → Email + Google OAuth via Supabase
-├── Dashboard           → Real-time financial overview
-├── Transactions        → Add, categorize, filter, analyze
-├── Goals               → Create & track savings targets
-├── Budget Planner      → Auto-generate personalized budgets
-├── AI Spending Coach   → Pattern detection & recommendations
-├── Expense Prediction  → Forecasting via historical data
-├── Savings Challenges  → Gamified streaks & badge system
-├── Analytics           → Spending trends & visual breakdowns
-├── Health Center       → Composite financial health score
-└── User Profile        → Settings & account management
+## Run it yourself
+
+```bash
+git clone https://github.com/poojadahiya22/payfi.git
+cd payfi
+npm install
 ```
 
----
+Create a `.env` file with your own Supabase project keys:
 
-## UI Highlights
+```bash
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
-- Dark-themed fintech interface with emerald green accent palette
-- Glassmorphism auth screens with animated finance-themed illustrations
-- Skeleton loaders for seamless data fetching
-- Smooth page transitions via Framer Motion
-- Interactive Recharts graphs for all analytics
-- Fully protected routes with session management
-- Custom `P₹` logo identity
+Then start the dev server:
 
----
+```bash
+npm run dev
+```
 
 ## Roadmap
 
-These are planned for the mobile app release:
+- [ ] Recurring transactions
+- [ ] Subscription reminders
+- [ ] A dedicated mobile app
 
-- [ ] SMS-based auto expense detection
-- [ ] UPI transaction insights
-- [ ] Bank account integration
-- [ ] Investment tracking
-- [ ] Subscription tracker & alerts
-- [ ] AI financial assistant (chat interface)
-- [ ] Personalized financial roadmaps
+## About me
 
----
-
-## Why I Built This
-
-I'm a CSE student managing a tight budget — and every expense tracker I tried was either too simple or too complex. PayFi is what I wished existed: something that actually *thinks* with you, not just stores data for you.
-
-It's also the project where I pushed myself to go full-stack — Supabase backend, real auth flow, data-driven AI coaching, chart-heavy analytics — all in a single, cohesive product.
+Built by **[Pooja Dahiya](https://pooja-portfoliooo.netlify.app/)**, a Computer Science student who enjoys building full-stack products end to end.
+Open to Software Engineer and Full-Stack Developer roles. Let's connect on [LinkedIn](https://www.linkedin.com/in/pooja-dahiya-a04012297/).
 
 ---
 
-## Developer
-
-**Pooja Dahiya**
-B.Tech Computer Science Engineering · Graphic Era Hill University · Batch 2023–2027
-
-Passionate about building products that solve real problems — not just writing code.
-
-[![GitHub](https://img.shields.io/badge/GitHub-poojadahiya22-181717?style=flat-square&logo=github)](https://github.com/poojadahiya22)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Live%20Site-1d9e75?style=flat-square&logo=netlify)](https://pooja-portfoliooo.netlify.app/)
-
----
-
-*If this project resonates with you, a ⭐ on GitHub goes a long way — thank you!*
+<sub>PayFi is a portfolio project and not financial advice.</sub>
